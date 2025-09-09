@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>지오스튜디오 - 앱개발 전문 회사</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .logo {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .nav-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(45deg, #764ba2, #667eea);
+        }
+
+        .main-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 2rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+            text-align: center;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 2px;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #444;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #f5f7ff 0%, #e8f0ff 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            header {
+                padding: 1.5rem;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            nav {
+                gap: 1rem;
+            }
+            
+            .nav-link {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .main-content {
+                padding: 2rem 1.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">TechFlow</div>
+            <p class="tagline">혁신적인 모바일 앱으로 미래를 만드는 개발 전문 회사</p>
+            <nav>
+                <a href="#" class="nav-link" onclick="window.location.href = 'index.html';">🏠 홈으로</a>
+                <a href="#" class="nav-link" onclick="window.location.href = 'applist.html';">📱 개발 앱 리스트</a>
+                <a href="#" class="nav-link" onclick="window.location.href = 'privacy.html';">🔒 개인정보처리방침</a>
+                <a href="#contact" class="nav-link">📞 연락처</a>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <section id="home" class="section">
+                <h2>회사 소개</h2>
+                <p>
+                    지오스튜디오는 2025년 부터, 사용자 중심의 편리한 모바일 app을 제공합니다. 
+                    우리는 창의적인 아이디어를 결합하여 일상을 더 편리하고 즐겁게 만드는 앱을 개발합니다.
+                </p>
+
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <span class="feature-icon">🚀</span>
+                        <h3>혁신적인 기술</h3>
+                        <p>최신 AI, AR/VR 기술을 활용한 차세대 모바일 애플리케이션 개발</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">👥</span>
+                        <h3>사용자 중심 설계</h3>
+                        <p>사용자 경험(UX)을 최우선으로 하는 직관적이고 편리한 인터페이스 제공</p>
+                    </div>
+                    <div class="feature-card">
+                        <span class="feature-icon">🔧</span>
+                        <h3>맞춤형 솔루션</h3>
+                        <p>사용자의 요구사항에 맞는 개인화된 앱 개발 및 유지보수</p>
+                    </div>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number">2+</span>
+                        <span class="stat-label">완료된 프로젝트</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">1만+</span>
+                        <span class="stat-label">앱 다운로드</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">58%</span>
+                        <span class="stat-label">고객 만족도</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">1/7</span>
+                        <span class="stat-label">기술 지원</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h3>🎯 우리의 비전</h3>
+                <p>
+                    기술을 통해 사람들의 삶을 더 풍요롭고 편리하게 만드는 것이 우리의 목표입니다. 
+                    모바일 기술의 무한한 가능성을 탐구하며, 사용자가 진정으로 필요로 하는 
+                    혁신적인 솔루션을 제공하고자 합니다.
+                </p>
+
+                <h3>💼 핵심 서비스</h3>
+                <p>
+                    • iOS/Android 네이티브 앱 개발<br>
+                    • 크로스플랫폼 앱 개발 (React Native, Flutter)<br>
+                    • 웹 애플리케이션 개발<br>
+                    • UI/UX 디자인<br>
+                    • 앱 스토어 배포 및 마케팅<br>
+                    • 유지보수 및 업데이트
+                </p>
+            </section>
+        </main>
+
+        <footer id="contact">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>📧</span>
+                    <span>horse.north.studio@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <span>📞</span>
+                    <span>010-9677-1920</span>
+                </div>
+                <div class="contact-item">
+                    <span>📍</span>
+                    <span>성남시 분당구 양지마을 303</span>
+                </div>
+            </div>
+            <p>&copy; 2025 지오스튜디오. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // 부드러운 스크롤 효과
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 페이지 로드시 애니메이션 효과
+        window.addEventListener('load', function() {
+            const elements = document.querySelectorAll('.feature-card, .stat-item');
+            elements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(20px)';
+                    el.style.transition = 'all 0.6s ease';
+                    
+                    setTimeout(() => {
+                        el.style.opacity = '1';
+                        el.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 100);
+            });
+        });
+
+        // 네비게이션 링크 클릭 이벤트
+        document.querySelector('a[href="#apps"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('개발한 앱 리스트 페이지로 이동합니다.\n(실제 구현시 apps.html 페이지로 연결됩니다)');
+        });
+
+        document.querySelector('a[href="#privacy"]').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('개인정보처리방침 페이지로 이동합니다.\n(실제 구현시 privacy.html 페이지로 연결됩니다)');
+        });
+    </script>
+</body>
+</html>

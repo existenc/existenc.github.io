@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개발한 앱 리스트 - 지오스튜디오</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            color: #444;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            font-size: 0.9rem;
+        }
+
+        .nav-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(45deg, #764ba2, #667eea);
+        }
+
+        .main-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 2rem;
+        }
+
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .app-card {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 32px rgba(102, 126, 234, 0.1);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .app-card:hover {
+            transform: translateY(-8px);
+            border-color: #667eea;
+            box-shadow: 0 15px 45px rgba(102, 126, 234, 0.2);
+        }
+
+        .app-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .app-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .app-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.3rem;
+        }
+
+        .app-category {
+            color: #667eea;
+            font-size: 0.9rem;
+            font-weight: 600;
+            background: rgba(102, 126, 234, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            display: inline-block;
+        }
+
+        .app-description {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .app-features {
+            margin-bottom: 2rem;
+        }
+
+        .app-features h4 {
+            color: #444;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .features-list {
+            list-style: none;
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: #555;
+            font-size: 0.95rem;
+        }
+
+        .feature-item::before {
+            content: '✓';
+            color: #22c55e;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .app-tech {
+            margin-bottom: 2rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 0.8rem;
+        }
+
+        .tech-tag {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .app-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .coming-soon-section {
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe5cc 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            border: 2px solid #ffb366;
+            margin-top: 3rem;
+        }
+
+        .coming-soon-section h3 {
+            color: #cc7a00;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .coming-soon-section p {
+            color: #994d00;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .roadmap-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .roadmap-item {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 179, 102, 0.3);
+        }
+
+        .roadmap-item h4 {
+            color: #cc7a00;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .roadmap-item p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            header {
+                padding: 1.5rem;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .page-title {
+                font-size: 1.5rem;
+            }
+            
+            nav {
+                gap: 1rem;
+            }
+            
+            .main-content {
+                padding: 2rem 1.5rem;
+            }
+            
+            .app-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .app-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            
+            .app-actions {
+                flex-direction: column;
+            }
+            
+            .action-btn {
+                min-width: auto;
+            }
+            
+            .coming-soon-section {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">지오스튜디오</div>
+            <h1 class="page-title">📱 개발한 앱 리스트</h1>
+            <p class="page-subtitle">혁신적인 기술로 만든 우리의 모바일 애플리케이션들을 만나보세요</p>
+            <nav>
+                <a href="#" class="nav-link" onclick="window.location.href = 'index.html';">🏠 홈으로</a>
+                <a href="#" class="nav-link" onclick="window.location.href = 'privacy.html';">🔒 개인정보처리방침</a>
+                <a href="#contact" class="nav-link">📞 연락처</a>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <div class="stats-section">
+                <div class="stat-card">
+                    <span class="stat-number">1</span>
+                    <span class="stat-label">출시된 앱</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">5,000+</span>
+                    <span class="stat-label">총 다운로드</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">2.0</span>
+                    <span class="stat-label">평균 평점</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">개발 중인 앱</span>
+                </div>
+            </div>
+
+            <div class="app-grid">
+                <div class="app-card">
+                    <div class="app-header">
+                        <div class="app-icon">S</div>
+                        <div>
+                            <h2 class="app-title">SRT Trigger</h2>
+                            <span class="app-category">🚄 교통 · 여행</span>
+                        </div>
+                    </div>
+
+                    <div class="app-description">
+                        SRT 예매를 더 쉽고 빠르게! 원하는 시간대의 좌석이 나오면 자동으로 알림을 받고, 
+                        빠른 예매가 가능한 스마트한 SRT 예매 도우미 앱입니다. 복잡한 예매 과정을 
+                        간소화하여 누구나 쉽게 사용할 수 있습니다.
+                    </div>
+
+                    <div class="app-features">
+                        <h4>🎯 주요 기능</h4>
+                        <ul class="features-list">
+                            <li class="feature-item">원클릭 빠른 예매 기능</li>
+                            <li class="feature-item">사용자 맞춤 UI/UX</li>
+                        </ul>
+                    </div>
+
+                    <div class="app-tech">
+                        <h4>🔧 기술 스택</h4>
+                        <div class="tech-stack">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Push Notification</span>
+                            <span class="tech-tag">REST API</span>
+                        </div>
+                    </div>
+
+                    <div class="app-actions">
+                        <a href="#" class="action-btn btn-primary" onclick="window.open('https://play.google.com/store/apps/details?id=com.zio.srttrigger&hl=ko', 
+                          'popup', 
+                          'width=500,height=800,scrollbars=yes');">
+                            📱 Google Play
+                        </a>
+                       
+                    </div>
+                </div>
+            </div>
+
+            <div class="coming-soon-section">
+                <h3>🚀 개발 중인 앱들</h3>
+                <p>더 많은 혁신적인 앱들이 곧 여러분을 찾아갑니다!</p>
+                
+                <ul class="roadmap-list">
+                    <li class="roadmap-item">
+                        <h4>🏠 스마트 홈 컨트롤러</h4>
+                        <p>IoT 기기들을 통합 관리하는 스마트 홈 솔루션 (2025 Q2 출시 예정)</p>
+                    </li>
+                    <li class="roadmap-item">
+                        <h4>📚 AI 학습 도우미</h4>
+                        <p>개인 맞춤형 학습 계획을 제공하는 AI 기반 교육 앱 (2025 Q3 출시 예정)</p>
+                    </li>
+                    <li class="roadmap-item">
+                        <h4>💰 간편 가계부</h4>
+                        <p>카메라로 영수증을 스캔하는 AI 자동 가계부 앱 (2025 Q4 출시 예정)</p>
+                    </li>
+                </ul>
+            </div>
+        </main>
+
+        <footer id="contact">
+            <h3>📞 앱 관련 문의</h3>
+            <p style="margin: 1rem 0;">앱 사용 중 문의사항이나 제안사항이 있으시면 언제든 연락주세요.</p>
+            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin: 1.5rem 0;">
+                <span>📧 horse.north.studio@gmail.com</span>
+                <span>📞 010-9677-1920</span>
+                <span></span>
+            </div>
+            <p>&copy; 2025 지오스튜디오. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <button class="back-to-top" onclick="scrollToTop()">↑</button>
+
+    <script>
+        // 부드러운 스크롤 효과
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 맨 위로 버튼 표시/숨김
+        window.addEventListener('scroll', function() {
+            const backToTopButton = document.querySelector('.back-to-top');
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+
+        // 맨 위로 스크롤
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // 네비게이션 함수들
+        function goHome() {
+            alert('메인 홈페이지로 이동합니다.\n(실제 구현시 index.html 페이지로 연결됩니다)');
+        }
+
+        function goToPrivacy() {
+            alert('개인정보처리방침 페이지로 이동합니다.\n(실제 구현시 privacy.html 페이지로 연결됩니다)');
+        }
+
+        // 앱 다운로드 함수
+        function downloadApp(platform) {
+            if (platform === 'android') {
+                alert('Google Play Store에서 SRT Trigger를 다운로드합니다.\n(실제 구현시 Play Store 링크로 연결됩니다)');
+            } else if (platform === 'ios') {
+                alert('App Store에서 SRT Trigger를 다운로드합니다.\n(실제 구현시 App Store 링크로 연결됩니다)');
+            }
+        }
+
+        // 앱 상세 정보 보기
+        function viewDetails() {
+            alert('SRT Trigger 상세 정보 페이지로 이동합니다.\n(실제 구현시 상세 페이지로 연결됩니다)');
+        }
+
+        // 페이지 로드시 애니메이션 효과
+        window.addEventListener('load', function() {
+            const cards = document.querySelectorAll('.app-card, .stat-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                        }, index * 200);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'all 0.6s ease';
+                observer.observe(card);
+            });
+
+            // 로딩 완료 후 통계 애니메이션
+            setTimeout(() => {
+                const statNumbers = document.querySelectorAll('.stat-number');
+                statNumbers.forEach(stat => {
+                    const finalNumber = stat.textContent;
+                    stat.textContent = '0';
+                    
+                    if (finalNumber === '4.8') {
+                        animateNumber(stat, 0, 4.8, 1000, true);
+                    } else if (finalNumber === '5,000+') {
+                        animateNumber(stat, 0, 5000, 1500, false, '+');
+                    } else {
+                        animateNumber(stat, 0, parseInt(finalNumber), 800, false);
+                    }
+                });
+            }, 500);
+        });
+
+        function animateNumber(element, start, end, duration, isDecimal = false, suffix = '') {
+            const startTime = performance.now();
+            
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                const current = start + (end - start) * progress;
+                
+                if (isDecimal) {
+                    element.textContent = current.toFixed(1);
+                } else {
+                    element.textContent = Math.floor(current).toLocaleString() + suffix;
+                }
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+            
+            requestAnimationFrame(update);
+        }
+    </script>
+</body>
+</html>
